@@ -4,13 +4,14 @@ set(allSourceFiles
 	"TCPConnection.cpp"
 	"TCPPacket.cpp"
 	"TCPTCB.cpp"
+	"TCPSocket.cpp"
 )
 
 set(allHeaderFiles
 	"../include/TCPConnection.hpp"
 	"../include/TCPPacket.hpp"
 	"../include/TCPTCB.hpp"
-
+	"../include/TCPSocket.hpp"
 )
 
 add_library(allTCPLibs STATIC
@@ -31,4 +32,14 @@ add_library(TCPPacketLib STATIC
 add_library(TCPConnectionLib STATIC
 	../include/TCPConnection.hpp
 	TCPConnection.cpp
+)
+
+add_library(TCPSocketLib STATIC
+	../include/TCPSocket.hpp
+	TCPSocket.cpp
+)
+
+add_library(TCPTimerLib STATIC
+	../include/TCPTimer.hpp
+	TCPTimer.cpp
 )

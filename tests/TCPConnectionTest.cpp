@@ -1,11 +1,10 @@
 #include "TCPConnection.hpp"
+
 #include <gtest/gtest.h>
 
-TEST(TCPConnectionTests, openConnectionTest)
+TEST(TCPConnectionTests, generateISNTest)
 {
 	TCPConnection tcpConnection;
 
-	
-	EXPECT_TRUE(tcpConnection.openConnection());	
-
+	tcpConnection.generateInitialSequenceNumber();
 }

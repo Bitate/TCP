@@ -1,7 +1,7 @@
 #include <cstdint>
 
-#include "TCPConnection"
-#include "TCPSocket"
+#include "TCPConnection.hpp"
+#include "TCPSocket.hpp"
 
 class TCPTCB
 {
@@ -21,7 +21,7 @@ private:
 
 	uint32_t nextPacketSequenceNumber;
 
-	TCPConnectionState* connectionState;
+	TCPConnectionStatus* connectionState;
 	
 	// 16 bits special flags
 	

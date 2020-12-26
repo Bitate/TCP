@@ -5,7 +5,7 @@ add_executable(testAllTCPLibs
 )
 target_link_libraries(testAllTCPLibs
 	allTCPLibs
-	gtest-main
+	gtest_main
 )
 
 add_executable(testTCPPacket
@@ -13,15 +13,15 @@ add_executable(testTCPPacket
 )
 target_link_libraries(testTCPPacket
 	TCPPacketLib
-	gtest-main
+	gtest_main
 )
 
 add_executable(testTCPConnection
 	TCPConnectionTest.cpp
 )
 target_link_libraries(testTCPConnection
-	TCPConectionLib
-	gtest-main
+	TCPConnectionLib
+	gtest_main
 )
 
 add_executable(testTCPTCB
@@ -29,5 +29,21 @@ add_executable(testTCPTCB
 )
 target_link_libraries(testTCPTCB
 	TCPTCBLib
-	gtest-main
+	gtest_main
+)
+
+add_executable(testTCPSocket
+	TCPSocketTest.cpp
+)
+target_link_libraries(testTCPTCB
+	TCPSocketLib
+	gtest_main
+)
+
+add_executable(testTCPTimer
+	TCPTimerTest.cpp
+)
+target_link_libraries(testTCPTimer
+	TCPTimerLib
+	gtest_main
 )

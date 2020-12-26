@@ -1,5 +1,31 @@
 #pragma once
 
+#include "TCPSocket.hpp"
+#include "TCPTimer.hpp"
+
+#include <vector>
+#include <cstdint>
+
+enum class TCPConnectionStatus
+{
+	// connection established
+	ESTABLISHED,
+
+	// connection closed
+	CLOSED,
+
+	// SYNed on send side
+	SYNED_ON_SEND_SIDE,
+
+	// SYNed on receive side
+	SYNED_ON_RECEIVE_SIDE
+};
+
+enum class TCPMajorStates
+{
+
+};
+
 class TCPConnection 
 {
 public:
@@ -30,7 +56,11 @@ public:
 	
 	/**
 	 * @brief  INTERRUPT(established connection)
-	 * @param  
+	 * @param  openedConnection  TCP opened connection.
+	 * @remarks  There are three cases in closing a TCP connection:
+	 *				1. Local side closes;
+	 *				2. Remote side closes by sending a FIN control signal;
+	 *              3. Both sides close simultaneously.
 	 */
 	void interruptConnection(const TCPConnection& openedConnection);
 
@@ -38,7 +68,7 @@ public:
 	 * @brief  STATUS(given connection)
 	 * @param  
 	 */
-	TCPStatus getConnectionStatus(const TCPConnection& givenConnection);
+	TCPConnectionStatus getConnectionStatus(const TCPConnection& givenConnection);
 
 	/**
 	 * @brief  SEND(established connection, data [,timer])
@@ -46,7 +76,7 @@ public:
 	 */
 	void send(
 			const TCPConnection& openedConnection, 
-			std::vector<u_int8>& data,
+			std::vector<uint8_t>& data,
 			bool isLastLetter, 
 			TCPTimer& timeout
 	);
@@ -58,30 +88,20 @@ public:
 	 */
 	void receive(
 			const TCPConnection& openedConnection,
-			std::vector<u_int8>& buffer
+			std::vector<uint8_t>& buffer
 	);
 
+	/**
+	 * @brief  Generate TCP's Initial Sequence Number
+	 * @return  ISN number in 32-bit.
+	 */
+	uint32_t generateInitialSequenceNumber();
 
-	
 
 private:
 	bool isConnectionEstablished;
-	
+	TCPConnectionStatus connectionStatus;
 
 }; 
 
-enum class TCPConnectionState
-{
-	// connection established
-	ESTABLISHED,
-
-	// connection closed
-	CLOSED,
-
-	// SYNed on send side
-	SYNED_ON_SEND_SIDE,
-
-	// SYNed on receive side
-	SYNED_ON_RECEIVE_SIDE
-}
 
