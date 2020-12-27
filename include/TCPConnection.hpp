@@ -94,13 +94,24 @@ public:
 	/**
 	 * @brief  Generate TCP's Initial Sequence Number
 	 * @return  ISN number in 32-bit.
+	 * @remarks  The generation of ISN must prevent from gussing attacks.
 	 */
 	uint32_t generateInitialSequenceNumber();
 
 
 private:
 	bool isConnectionEstablished;
+	
 	TCPConnectionStatus connectionStatus;
+
+	/**
+	 * Each TCP connection actually is a four-tuple of (local_ip, local_port, remote_ip, remote_port).
+	 */
+	uint32_t localIp;
+	uint16_t localPort;
+	uint32_t remoteIp;
+	uint16_t remotePort;
+
 
 }; 
 

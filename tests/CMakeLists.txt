@@ -47,3 +47,7 @@ target_link_libraries(testTCPTimer
 	TCPTimerLib
 	gtest_main
 )
+
+add_executable(getRawSockets
+	rawSocket.cpp
+)
