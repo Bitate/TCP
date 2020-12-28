@@ -28,7 +28,12 @@ An inappropriate generation will make TCP suffer ISN gussing attacks.
 
 ## References
 * [RFC 675](https://tools.ietf.org/html/rfc675)
+* [RFC 793](https://tools.ietf.org/html/rfc793)
 * [RFC 6528](https://tools.ietf.org/html/rfc6528)
 * [Using Linux Raw Sockets](https://squidarth.com/networking/systems/rc/2018/05/28/using-raw-sockets.html)
 * [A Guide to Using Raw Sockets](https://www.opensourceforu.com/2015/03/a-guide-to-using-raw-sockets/)
 * [TCP Initial Sequence Numbers in Linux](https://chris-wood.github.io/2016/09/30/TCP-ISN-MD5.html)
+* [Write a Network Device Driver](https://tldp.org/LDP/LG/issue93/bhaskaran.html)
+* [What's the difference between a TCP segment and a TCP packet?](https://superuser.com/questions/298087/whats-the-difference-between-a-tcp-segment-and-a-tcp-packet)
+* [Linux网络协议栈【驱动和网卡怎样交互？】](https://zhuanlan.zhihu.com/p/73576057)
+* [网卡适配器收发数据帧流程](https://www.cnblogs.com/jmilkfan-fanguiju/p/12789806.html)
