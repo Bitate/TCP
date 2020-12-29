@@ -5,6 +5,7 @@
 #include <cmath>
 #include <cstdint>
 #include <sstream>
+#include <iomanip>
 
 /**
  * TODO: In my view, TCP Packet = TCP Segment. Is this equation true?
@@ -56,7 +57,25 @@ public:
 	std::vector<uint8_t>& getData() const;
 
 public:
+	/**
+	 * @brief  Parse raw TCP packet byte stream.
+	 * @param  rawPacket  Given raw TCP packet byte stream in @b big-endian.
+	 * @return  True if succeeds.
+	 */
+	bool parseRawPacket(const std::vector<uint8_t>& rawPacket);
+
+	/**
+	 * @brief  Parse raw TCP packet byte stream.
+	 * @param  rawPacket  Given raw TCP packet byte stream in @b big-endian.
+	 * @return  True if succeeds.
+	 */
 	bool parseRawPacket(const std::string& rawPacket);
+
+	/**
+	 * @brief  Generate/Assemble TCP packet byte stream.
+	 * @return  Raw TCP packet byte stream.
+	 */
+	std::vector<uint8_t> generateRawPacket();
 
 private:
 	uint16_t sourcePort;
@@ -65,7 +84,7 @@ private:
 	uint32_t sequenceNumber;
  	uint32_t acknowledgeNumber;
 	
-	uint16_t dataOffset : 4;	// also header length
+	uint16_t dataOffset : 4;	// also known as header length
 	uint16_t reserved   : 6;
 	uint16_t UGR        : 1;
 	uint16_t ACK		: 1;
