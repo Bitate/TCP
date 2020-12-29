@@ -37,3 +37,4 @@ An inappropriate generation will make TCP suffer ISN gussing attacks.
 * [What's the difference between a TCP segment and a TCP packet?](https://superuser.com/questions/298087/whats-the-difference-between-a-tcp-segment-and-a-tcp-packet)
 * [Linux网络协议栈【驱动和网卡怎样交互？】](https://zhuanlan.zhihu.com/p/73576057)
 * [网卡适配器收发数据帧流程](https://www.cnblogs.com/jmilkfan-fanguiju/p/12789806.html)
+* [Low level networking in assembler (x86 compatible)](https://stackoverflow.com/questions/3621932/low-level-networking-in-assembler-x86-compatible)

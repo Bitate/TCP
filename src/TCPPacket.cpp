@@ -25,7 +25,7 @@ void TCPPacket::setSequenceNumber(const uint32_t& newSequenceNumber)
     sequenceNumber = newSequenceNumber;
 }
 
-void TCPPacket::setAcknowledgeNumber(const uint32_t& newAcknowledgeNumber)
+void TCPPacket::setAcknowledgmentNumber(const uint32_t& newAcknowledgeNumber)
 {
     acknowledgeNumber = newAcknowledgeNumber;
 }
@@ -88,4 +88,119 @@ void TCPPacket::setUrgentPointer(const uint16_t& newUrgentPointer)
 void TCPPacket::setData(const std::vector<uint8_t>& newData)
 {
     data = newData;
+}
+
+uint16_t TCPPacket::getSourcePort() const
+{
+    return sourcePort;
+}
+
+uint16_t TCPPacket::getDestinationPort() const
+{
+    return destinationPort;
+}
+
+uint32_t TCPPacket::getSequenceNumber() const
+{
+    return sequenceNumber;
+}
+
+uint32_t TCPPacket::getAcknowledgementNumber() const
+{
+    return acknowledgeNumber;
+}
+
+uint16_t TCPPacket::getDataOffset() const
+{
+    return dataOffset;
+}
+
+uint16_t TCPPacket::getReserved() const
+{
+    return reserved;
+}
+
+uint16_t TCPPacket::getURG() const
+{
+    return UGR;
+}
+
+uint16_t TCPPacket::getACK() const
+{
+    return ACK;
+}
+
+uint16_t TCPPacket::getPSH() const
+{
+    return PSH;
+}
+
+uint16_t TCPPacket::getRST() const
+{
+    return RST;
+}
+
+uint16_t TCPPacket::getSYN() const
+{
+    return SYN;
+}
+
+uint16_t TCPPacket::getFIN() const
+{
+    return FIN;
+}
+
+uint16_t TCPPacket::getWindowSize() const
+{
+    return windowSize;
+}
+
+uint16_t TCPPacket::getChecksum() const
+{
+    return checksum;
+}
+
+uint16_t TCPPacket::getUrgentPointer() const
+{
+    return urgentPointer;
+}
+
+bool TCPPacket::parseRawPacket(const std::string& rawPacket)
+{
+    std::istringstream sourcePortString(rawPacket.substr(0, 4));
+    sourcePortString >> std::hex >> sourcePort;
+
+    std::istringstream destinationPortString(rawPacket.substr(4, 4));
+    destinationPortString >> std::hex >> destinationPort;
+
+    std::istringstream sequenceNumberString(rawPacket.substr(8, 8));
+    sequenceNumberString >> std::hex >> sequenceNumber;
+
+    std::istringstream acknowledgementNumberString(rawPacket.substr(16, 8));
+    acknowledgementNumberString >> std::hex >> acknowledgeNumber;
+
+    // wordString contains: dataOffset(4-bit), reserved(6-bit), and flags(6-bit)
+    std::istringstream wordString(rawPacket.substr(24, 4));
+    uint16_t wordBuffer;
+    wordString >> std::hex >> wordBuffer;
+    dataOffset = (wordBuffer & 0xF000u) >> 12; 
+    reserved = (wordBuffer & 0x0FC0u) >> 6;
+    UGR = (wordBuffer & 0x0020u) >> 5;
+    ACK = (wordBuffer & 0x0010u) >> 4;
+    PSH = (wordBuffer & 0x0008u) >> 3;
+    RST = (wordBuffer & 0x0004u) >> 2;
+    SYN = (wordBuffer & 0x0002u) >> 1;
+    FIN = wordBuffer & 0x0001u;
+
+    std::istringstream windowSizeString(rawPacket.substr(28, 4));
+    windowSizeString >> std::hex >> windowSize;
+
+    std::istringstream checksumString(rawPacket.substr(32, 4));
+    checksumString >> std::hex >> checksum;
+
+    std::istringstream urgentPointerString(rawPacket.substr(36, 4));
+    urgentPointerString >> std::hex >> urgentPointer;
+    
+    // TODO: check whether given raw data is valid
+    return true;
 }

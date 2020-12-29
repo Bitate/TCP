@@ -1,49 +1,49 @@
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
-add_executable(testAllTCPLibs
+add_executable(mainExe
 	main.cpp
 )
-target_link_libraries(testAllTCPLibs
+target_link_libraries(mainExe
 	allTCPLibs
 	gtest_main
 )
 
-add_executable(testTCPPacket
+add_executable(TCPPacketTest
 	TCPPacketTest.cpp
 )
-target_link_libraries(testTCPPacket
+target_link_libraries(TCPPacketTest
 	TCPPacketLib
 	gtest_main
 )
 
-add_executable(testTCPConnection
+add_executable(TCPConnectionTest
 	TCPConnectionTest.cpp
 )
-target_link_libraries(testTCPConnection
+target_link_libraries(TCPConnectionTest
 	TCPConnectionLib
 	gtest_main
 )
 
-add_executable(testTCPTCB
+add_executable(TCPTCBTest
 	TCPTCBTest.cpp
 )
-target_link_libraries(testTCPTCB
+target_link_libraries(TCPTCBTest
 	TCPTCBLib
 	gtest_main
 )
 
-add_executable(testTCPSocket
+add_executable(TCPSocketTest
 	TCPSocketTest.cpp
 )
-target_link_libraries(testTCPTCB
+target_link_libraries(TCPSocketTest
 	TCPSocketLib
 	gtest_main
 )
 
-add_executable(testTCPTimer
+add_executable(TCPTimerTest
 	TCPTimerTest.cpp
 )
-target_link_libraries(testTCPTimer
+target_link_libraries(TCPTimerTest
 	TCPTimerLib
 	gtest_main
 )
